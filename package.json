@@ -1,0 +1,37 @@
+{
+  "name": "angulartics-localytics",
+  "version": "0.1.0",
+  "description": "Localytics plugin for Angulartics",
+  "keywords": [
+    "localytics",
+    "analytics",
+    "plugin",
+    "angular",
+    "angulartics"
+  ],
+  "author": "Joe Halliwell <joe.halliwell@gmail.com> (https://github.com/joehalliwell)",
+  "contributors": [
+    "Simon Morvan <garphy@zone84.net> (https://github.com/morvans)",
+    "Tim Elfelt <timelf123@gmail.com> (https://github.com/timelf123)"
+  ],
+  "main": "lib/index.js",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean",
+    "build": "mkdir -p dist && uglifyjs lib/angulartics-localytics.js --compress --source-map dist/angulartics-localytics.min.js.map --source-map-root .. --source-map-url ../dist/angulartics-localytics.min.js.map -o dist/angulartics-localytics.min.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/angulartics/angulartics-localytics"
+  },
+  "bugs": {
+    "url": "https://github.com/angulartics/angulartics-localytics/issues"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "angulartics": "~0.18.0"
+  },
+  "devDependencies": {
+    "uglify-js": "^2.4.23"
+  }
+}
