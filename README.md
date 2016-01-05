@@ -70,7 +70,7 @@ For user tracking, the angulartics setUsername field must be a user id for local
 
 ```javascript
 $analytics.setUsername(userId)
-$analytics.setUserProperties({ email: EMAILADDRESS, username: USERNAME});
+$analytics.setUserProperties({ email: EMAILADDRESS, userName: USERNAME});
 ```
 
 Addtional documentation is available on the [Angulartics site](http://luisfarzati.github.io/angulartics).
