@@ -2,7 +2,7 @@
   "name": "angulartics-localytics",
   "main": "./dist/angulartics-localytics.min.js",
   "dependencies": {
-    "angulartics": "~1.02"
+    "angulartics": "~1.0.2"
   },
   "ignore": [
     "**/.*",
