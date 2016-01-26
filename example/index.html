@@ -5,15 +5,23 @@
 	<title>Localytics plugin sample | Angulartics</title>
 	<link rel="stylesheet" href="//bootswatch.com/cosmo/bootstrap.min.css">
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
-	<script src="//web.localytics.com/latest/localytics.min.js"></script>
 	<script src="/node_modules/angulartics/dist/angulartics.min.js"></script>
 	<script src="/dist/angulartics-localytics.min.js"></script>
-	<script>
-	var key = '758b4899aef4adc4d7bbe9c-0953a2cc-5afc-11e4-2710-004a77f8b47f';
-	// Enable logging and a short timeout for testing purposes
-	var opt = {logger: true, sessionTimeoutSeconds: 1};
-	window.localytics = LocalyticsSession(key, opt);
-	</script>
+
+
+<script>
+    +function(l,y,t,i,c,s) {
+        l['LocalyticsGlobal'] = i;
+        l[i] = function() { (l[i].q = l[i].q || []).push(arguments) };
+        l[i].t = +new Date;
+        (s = y.createElement(t)).type = 'text/javascript';
+        s.src = 'http://web.localytics.com/v3/localytics.min.js';
+        (c = y.getElementsByTagName(t)[0]).parentNode.insertBefore(s, c);
+    }(window, document, 'script', 'll');
+</script>
+
+
+
 </head>
 <body ng-app="sample">
 
@@ -61,8 +69,17 @@
 			.when('/b', { template: '<h1>Page "B"</h1>',  controller: 'SampleCtrl' })
 			.when('/c', { template: '<h1>Page "C"</h1>',  controller: 'SampleCtrl' })
 			.otherwise({ redirectTo: '/' });
+
+			ll('init', 'YOUR-LOCALYTICS-KEY', {logger: true, sessionTimeout: 1} /* Options */);
 	})
-	.controller('SampleCtrl', function () {});
+	.controller('SampleCtrl', function ($analytics) {
+
+
+		$analytics.setUsername("sean2");
+		$analytics.setUserProperties({email: 'sean@gemr.com', userName: 'sean'});
+		$analytics.eventTrack("SeanTestEvent");
+
+	});
 </script>
 </body>
 </html>

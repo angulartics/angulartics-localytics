@@ -35,13 +35,23 @@ angular.module('myApp', [
 ### bower
 
 ```shell
-bower install angulartics-localytics
+bower install gemr/angulartics-localytics
 ```
 
-Add the `<script>` to your `index.html`:
+Add this `<script>` to your `index.html`:
 
 ```html
-<script src="/bower_components/angulartics-localytics/dist/angulartics-localytics.min.js"></script>
+<script>
+    +function(l,y,t,i,c,s) {
+        l['LocalyticsGlobal'] = i;
+        l[i] = function() { (l[i].q = l[i].q || []).push(arguments) };
+        l[i].t = +new Date;
+        (s = y.createElement(t)).type = 'text/javascript';
+        s.src = '//web.localytics.com/v3/localytics.min.js';
+        (c = y.getElementsByTagName(t)[0]).parentNode.insertBefore(s, c);
+        ll('init', 'YOUR-LOCALYTICS-APP-KEY', {} /* Options */);
+    }(window, document, 'script', 'll');
+</script>
 ```
 
 Then add `angulartics.localytics` as a dependency for your app:
@@ -55,7 +65,15 @@ angular.module('myApp', [
 
 ## Documentation
 
-Documentation is available on the [Angulartics site](http://luisfarzati.github.io/angulartics).
+### User tracking
+For user tracking, the angulartics setUsername field must be a user id for localytics.  For user properties, localytics accepts an email address and an username only. 
+
+```javascript
+$analytics.setUsername(userId)
+$analytics.setUserProperties({ email: EMAILADDRESS, userName: USERNAME});
+```
+
+Addtional documentation is available on the [Angulartics site](http://luisfarzati.github.io/angulartics).
 
 ## Development
 
